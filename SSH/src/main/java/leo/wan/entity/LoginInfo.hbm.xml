@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 14:34:02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="leo.wan.entity.LoginInfo" table="LOGININFO">
+        <id name="userId" type="java.lang.Integer">
+            <column name="USERID" />
+            <generator class="native" />
+        </id>
+        <property name="loginIp" type="java.lang.String">
+            <column name="LOGINIP" />
+        </property>
+        <property name="loginArea" type="java.lang.String">
+            <column name="LOGINAREA" />
+        </property>
+        <property name="loginTime" type="java.util.Date">
+            <column name="LOGINTIME" />
+        </property>
+    </class>
+</hibernate-mapping>

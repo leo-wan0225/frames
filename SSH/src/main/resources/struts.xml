@@ -1,0 +1,31 @@
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 设置访问后缀 -->
+	<constant name="struts.action.extension" value="action,,do"></constant>
+	<!-- 设置为开发模式，修改文件后不用重启服务器 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 自定义拦截器栈 -->
+<!-- 	<package name="custom"  extends="struts-default">
+		<interceptors>
+			<interceptor name="myInterceptor" class="leo.wan.interceptors.MyInterceptor"></interceptor>
+			<interceptor-stack name="customeInteceptor">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="myInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="customeInteceptor"></default-interceptor-ref>
+	</package> -->
+	
+	<!-- 通配符0表示整个url -->
+	<package name="login" namespace="/login" extends="struts-default">
+		<action name="*" class="loginAction" method="{1}" > 
+			<result name="login">/index.jsp</result>
+			<result name="register">/register.jsp</result>
+			<result name="main">/main.jsp</result>
+			<result name="login">/index.jsp</result>
+			<allowed-methods>login,doLogin,register,doRegister</allowed-methods>
+		</action>
+	</package>
+</struts>

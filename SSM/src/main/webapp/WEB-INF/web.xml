@@ -1,0 +1,76 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+	<!-- spring监听器配置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext*.xml</param-value>
+	</context-param>
+	<!-- log4j配置项目根路径 -->
+	 <context-param>  
+        <param-name>webAppRootKey</param-name>    
+        <param-value>project</param-value>    
+    </context-param>   
+    <context-param>  
+         <param-name>log4jConfigLocation</param-name>  
+         <param-value>classpath:log4j.properties</param-value>  
+    </context-param>   
+    
+	<!-- 开启put和delete访问方式，用于支持restful api -->
+	<filter>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<!-- 用来解决post乱码的过滤器 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<!-- 过滤器映射 -->
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- log4j监听器实现将日志文件输出到web-inf下 -->
+   <listener>  
+          <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>  
+    </listener> 
+    <!--  spring监听器配置，初始化spring容器，以及将spring容器放入servletContext的域中 -->
+    <listener>
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+	<!-- 配置spring mvc的前端分发器，以及配置文件的位置及名称，启用spring mvc框架 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	 <!-- 404错误拦截 -->
+	  <error-page>
+	    <error-code>404</error-code>
+	    <location>/error404.jsp</location>
+	  </error-page>
+	  <!-- 500错误拦截 -->
+	  <error-page>
+	    <error-code>500</error-code>
+	    <location>/error500.jsp</location>
+	  </error-page>
+
+</web-app>
