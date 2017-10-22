@@ -93,8 +93,15 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.11</version>
+			<version>1.9.13</version>
 		</dependency>
+		<!-- 该依赖是提供@JsonFormat注解方便对象转json字符串时，日期格式变为long形状，而不是我们需要的格式 -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+   			<artifactId>jackson-databind</artifactId>
+    		<version>2.4.2</version>
+		</dependency>
+		
 		<!-- spring mvc依赖结束 -->
 		<!-- junit依赖 -->
 		<dependency>
