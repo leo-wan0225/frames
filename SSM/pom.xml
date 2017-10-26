@@ -67,7 +67,19 @@
     		<version>3.2.0.RELEASE</version>
     		<scope>test</scope>
 		</dependency>
+		<!-- spring mail依赖 -->
+		<dependency>  
+        	<groupId>org.springframework</groupId>  
+        	<artifactId>spring-context-support</artifactId>  
+        	<version>3.2.0.RELEASE</version>  
+     	</dependency> 
 		<!-- srping依赖结束 -->
+		<!-- java mail 依赖 -->
+		<dependency>
+    		<groupId>javax.mail</groupId>
+    		<artifactId>mail</artifactId>
+    		<version>1.4</version>
+		</dependency>
 		<!-- spring-mybatis整合依赖 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
