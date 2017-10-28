@@ -121,7 +121,7 @@
    			<artifactId>jackson-databind</artifactId>
     		<version>2.4.2</version>
 		</dependency>
-		
+		<!--测试内容-->	
 		<!-- spring mvc依赖结束 -->
 		<!-- junit依赖 -->
 		<dependency>
