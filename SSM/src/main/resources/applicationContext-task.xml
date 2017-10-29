@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+	<!-- 任务调度器配置 -->
+	<!-- 配置任务，如果扫描就不需要了 -->
+	<bean id="myTask" class="leo.wan.test.demo.MyTasks"></bean>
+	<task:scheduler id="taskScheduler" pool-size="100" />
+	<!-- 
+		cron表达式：{秒} {分} {时} {日期（具体哪天）} {月} {星期}    cron表达式要整体来看，*表示符合语法的任意数字，具体数字表示该位置为该数字时有触发任务的可能
+		可以符号有：, - * / 
+			,表示同一个位置上的或者的关系，满足一个就会触发
+			-表示时间范围,
+			*表示符合语法的任意数字,
+			/表示间隔时间
+		其中日期位置支持的特殊符号?,表示与{星期}互斥,意味着若明确指定{星期}触发，则表示{日期}无意义;
+					同时味着若明确指定{日期}触发，则表示{星期}无意义，也就是说日期和星期都指定的话，一定要有一方是？
+	 -->
+    <task:scheduled-tasks scheduler="taskScheduler">
+        <!-- 每隔1秒触发任务 -->
+        <task:scheduled ref="myTask" method="task1" cron="*/1 * * * * ?"/>
+        <!-- 每小时的10分30秒触发任务 -->
+        <task:scheduled ref="myTask" method="task2" cron="59 * * * * ?"/>
+    </task:scheduled-tasks>
+</beans>
