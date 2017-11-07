@@ -16,7 +16,7 @@
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 	<!-- 配置扫描路径，同时开启注解配置（也可以单独开启） -->
-	<context:component-scan base-package="leo.wan"></context:component-scan>
+	<context:component-scan base-package="leo.wan.service"></context:component-scan>
 	<!-- 导入数据库连接信息配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- 配置数据库连接池，得到连接 -->
@@ -71,41 +71,32 @@
 		</tx:attributes>
 	</tx:advice>
 	<!-- AOP配置 -->
+	<bean id="logAspect" class="leo.wan.aspect.LogAspect"></bean>
 	<aop:config>
 		<!-- 配置事务切入点 -->
-		<aop:pointcut expression="execution(* leo.wan.service.*.*(..))"
+		<aop:pointcut expression="execution(* leo.wan.*.*.*(..))"
 			id="txPointcut" />
+		<aop:pointcut expression="execution(* leo.wan.controller.*.*(..))"
+			id="loginPointcutController" />
+		<aop:pointcut expression="execution(* leo.wan.service.*.*(..))"
+			id="loginPointcutService" />
+		<aop:pointcut expression="execution(* leo.wan.mapper.*.*(..))"
+			id="loginPointcutDao" />
 		<!-- 配置其他切入点... -->
 		<!-- 配置事务切面信息 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 		<!-- 配置其他切面信息... -->
+		<!-- 统一日志管理切面配置，暂时对业务方法进行管理 -->
+		<aop:aspect ref="logAspect">
+			<aop:around method="loggingAroundForController" pointcut-ref="loginPointcutController"/>
+		</aop:aspect>
+		<aop:aspect ref="logAspect">
+			<aop:around method="loggingAroundForService" pointcut-ref="loginPointcutService"/>
+		</aop:aspect>
+		<aop:aspect ref="logAspect">
+			<aop:around method="loggingAroundForDao" pointcut-ref="loginPointcutDao"/>
+		</aop:aspect>
 	</aop:config>
-	<!-- spring mail配置 -->
-    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.163.com"/>
-        <property name="port" value="25"/>
-        <property name="username" value="wjing225@163.com"/>
-       	<!--授权码 -->
-        <property name="password" value="mima"/>
-        <property name="defaultEncoding" value="UTF-8"></property>   
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.timeout">25000</prop>    
-            </props>
-        </property>
-    </bean>
-    <!--配置线程池-->
-    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-        <!-- 核心线程数 -->
-        <property name="corePoolSize" value="5" />
-        <!-- 最大线程数 -->
-        <property name="maxPoolSize" value="200" />
-        <!-- 最大队列数 -->
-        <property name="queueCapacity" value="200" />
-        <!-- 线程池维护线程所允许的空闲时间 -->
-        <property name="keepAliveSeconds" value="60" />
-    </bean>
     <!-- 导入spring mail配置信息 -->
     <import resource="classpath:applicationContext-mail.xml"/>
     <!-- 导入定时任务的配置信息 -->

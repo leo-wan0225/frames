@@ -7,7 +7,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DateHelper {
+import org.apache.ibatis.javassist.expr.NewArray;
+
+public class DateUtils {
+	public static String getCurrentDateStr(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(new Date());
+	}
 	/**
 	 * 将时间转换为要求格式的字符串返回
 	 * @param date 要转换的Date对象
@@ -205,7 +211,7 @@ public class DateHelper {
         return day + "天" + hour + "小时" + min + "分" + sec + "秒";  
     }  
 	
-	private DateHelper(){
+	private DateUtils(){
 		
 	}
 }

@@ -31,7 +31,7 @@
 	 -->
     <task:scheduled-tasks scheduler="taskScheduler">
         <!-- 每隔1秒触发任务 -->
-        <task:scheduled ref="myTask" method="task1" cron="*/1 * * * * ?"/>
+        <task:scheduled ref="myTask" method="task1" cron="* * 0 * * ?"/>
         <!-- 每小时的10分30秒触发任务 -->
         <task:scheduled ref="myTask" method="task2" cron="59 * * * * ?"/>
     </task:scheduled-tasks>

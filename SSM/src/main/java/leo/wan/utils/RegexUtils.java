@@ -12,7 +12,7 @@ import java.util.regex.PatternSyntaxException;
  *@author leo
  *@date 2017年10月3日  下午8:58:04
  */
-public class RegexHelper {
+public class RegexUtils {
 	/**
 	 * 匹配数字
 	 */
@@ -174,7 +174,7 @@ public class RegexHelper {
 		return buffer.toString();
 	}
 
-	private RegexHelper() {
+	private RegexUtils() {
 
 	}
 }

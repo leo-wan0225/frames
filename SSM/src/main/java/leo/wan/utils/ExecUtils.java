@@ -6,7 +6,7 @@ package leo.wan.utils;
  *@author leo
  *@date 2017年10月5日  下午11:30:21
  */
-public class ExecHelper {
+public class ExecUtils {
 	
     
 }

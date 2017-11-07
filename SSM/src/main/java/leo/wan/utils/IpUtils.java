@@ -6,8 +6,8 @@ package leo.wan.utils;
  *@author leo
  *@date 2017年10月3日  下午4:44:39
  */
-public class IpHelper {
-	private IpHelper() {
+public class IpUtils {
+	private IpUtils() {
 
 	}
 

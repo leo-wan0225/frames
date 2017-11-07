@@ -34,6 +34,8 @@ public class UserController  {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pageSize", pageBean.getPageSize());
 		map.put("pageStar", pageBean.getStart());
+		String iString = null;
+		iString.endsWith("e");
 		map.put("user", user);
 		List<User> users = UserService.findUserByPage(map);
 		System.out.println(users);

@@ -3,7 +3,7 @@ package leo.wan.utils;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class StringHelper {
+public class StringUtils {
 	/**
 	 * 判断字符是不是空或者为""
 	 * 
@@ -1063,7 +1063,7 @@ public class StringHelper {
 		htmlEntities.put("euro", new Integer(8364));
 	}
 
-	private StringHelper() {
+	private StringUtils() {
 
 	}
 }

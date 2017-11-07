@@ -13,14 +13,14 @@ import java.util.UUID;
  * @author leo
  * @date 2017年10月2日 上午11:29:58
  */
-public class FileHelper {
+public class FileUtils {
 
 	/**
 	 * 一次读取文件的缓存大小
 	 */
 	private final static int BUFFER_SIZE = 1024;
 
-	private FileHelper() {
+	private FileUtils() {
 
 	}
 
