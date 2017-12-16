@@ -17,7 +17,7 @@
          <param-value>classpath:log4j.properties</param-value>  
     </context-param>   
     
-	<!-- 开启put和delete访问方式，用于支持restful api -->
+	<!-- 开启put和delete访问方式，用于支持restful api，加上会有中文乱码的问题，去掉就好了 -->
 	<filter>
 		<filter-name>HiddenHttpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
