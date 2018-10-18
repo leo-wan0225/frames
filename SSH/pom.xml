@@ -28,7 +28,7 @@
 			<version>1.2</version>
 		</dependency>
 		<!-- JEE6依赖结束 -->
-		<!-- srping依赖 -->
+		<!-- srping依赖 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -44,6 +44,23 @@
 			<artifactId>spring-web</artifactId>
 			<version>3.2.0.RELEASE</version>
 		</dependency>
+		-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.3.18.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.18.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.3.18.RELEASE</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -52,15 +69,27 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
+			<version>4.3.18.RELEASE</version>
+		</dependency>
+		<!-- s
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
 			<version>3.2.0.RELEASE</version>
 		</dependency>
-		<!-- srping依赖结束 -->
-		<!-- spring和hibernate整合依赖 -->
+		rping依赖结束 -->
+		<!-- spring和hibernate整合依赖
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>3.2.0.RELEASE</version>
-		</dependency>
+		</dependency> 
+		-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.3.18.RELEASE</version>
+		</dependency> 
 
 		<!-- spring和hibernate整合依赖结束 -->
 		<!-- hibernate依赖 -->
