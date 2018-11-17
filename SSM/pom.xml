@@ -203,6 +203,12 @@
 		    <artifactId>jsch</artifactId>
 		    <version>0.1.52</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.2</version>
+		</dependency>
+		
 		<!-- 工具类依结束 -->
 		
 	</dependencies>
