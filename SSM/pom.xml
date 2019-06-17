@@ -215,11 +215,22 @@
 		    <artifactId>commons-exec</artifactId>
 		    <version>1.3</version>
 		</dependency>
-		
 		<!-- 工具类依结束 -->
 		
 	</dependencies>
 	<build>
 		<finalName>SSM</finalName>
+		<!-- 新增maven编译插件 -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<target>1.7</target>
+					<source>1.7</source>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
