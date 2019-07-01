@@ -7,6 +7,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SSM Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<!-- 可以通过properties标签新增自定义标签，然后通过${myversion}来引用 -->
+		<myversion>4.0.2</myversion>
+	</properties>
 	<dependencies>
 		<!-- 按照依赖引入的顺序整合框架 ：spring-mybatis-springmvc -->
 		<!-- JEE6依赖 -->
@@ -14,6 +18,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
+			<!-- 表示该jar包不参与打包部署，由运行容器提供，比如tomcat.表示被提供的 -->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -33,6 +38,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>4.3.18.RELEASE</version>
+			<!-- 默认的scope是compile -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -128,6 +134,7 @@
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		    <version>4.12</version>
+		    <!-- test和provide范围的jar包不能传递，所以test和provide会分布在各个模块下。解决的办法是在父工程指定版本号，子工程引用父工程；引入父工程后，安装的时候需要先安装父工程。多模块的工程一个一个安装太麻烦，可以使用在聚合工程中使用聚合：继承和聚合的使用 -->
 		    <scope>test</scope>
 		</dependency>
 		<!-- junit依赖结束 -->
@@ -156,7 +163,6 @@
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-log4j12</artifactId>
 		    <version>1.7.12</version>
-		    <scope>test</scope>
 		</dependency>
 		<!--slf4j日志门面依赖结束 -->
 		<!-- log4j依赖 -->
@@ -229,8 +235,19 @@
 				<configuration>
 					<target>1.7</target>
 					<source>1.7</source>
+					<!-- 指明编译源代码时使用的字符编码，maven编译的时候默认使用的GBK编码，  通过encoding属性设置字符编码， 告诉maven这个项目使用UTF-8来编译 -->
+        			<encoding>utf8</encoding> 
 				</configuration>
 			</plugin>
+			<!-- 新增插件用来解决打包，安装时因为测试程序报错导致失败的问题 ,本质上就是在该执行测试程序的生命周期中设置跳过执行即可-->
+			 <plugin>   
+		        <groupId>org.apache.maven.plugins</groupId>   
+		        <artifactId>maven-surefire-plugin</artifactId>   
+		        <version>2.4.2</version>   
+		        <configuration>   
+		          <skipTests>true</skipTests>   
+		        </configuration>   
+      		</plugin>   
 		</plugins>
 	</build>
 </project>

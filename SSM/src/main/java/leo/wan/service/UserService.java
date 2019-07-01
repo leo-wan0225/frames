@@ -26,5 +26,4 @@ public class UserService {
 	public int getTotalUserCount(Map<String, Object> map){
 		return userMapper.getTotalUserCount(map);
 	}
-	
 }

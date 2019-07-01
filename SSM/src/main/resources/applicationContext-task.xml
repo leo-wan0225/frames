@@ -17,7 +17,7 @@
         http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 	<!-- 任务调度器配置 -->
 	<!-- 配置任务，如果扫描就不需要了 -->
-	<bean id="myTask" class="leo.wan.test.demo.MyTasks"></bean>
+	<bean id="myTask" class="leo.wan.test.unit.MyTasks"></bean>
 	<task:scheduler id="taskScheduler" pool-size="100" />
 	<!-- 
 		cron表达式：{秒} {分} {时} {日期（具体哪天）} {月} {星期}    cron表达式要整体来看，*表示符合语法的任意数字，具体数字表示该位置为该数字时有触发任务的可能
