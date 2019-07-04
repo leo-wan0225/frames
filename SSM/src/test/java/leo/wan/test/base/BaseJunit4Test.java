@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //使用junit测试
 @RunWith(SpringJUnit4ClassRunner.class)
 //加载spring配置文件
-@ContextConfiguration({"/applicationContext.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class BaseJunit4Test {
 	
 }
