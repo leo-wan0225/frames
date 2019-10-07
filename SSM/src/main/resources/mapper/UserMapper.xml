@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leo.wan.dao.UserMapper">
+	<select id="findUserByPage" resultType="user">
+		select * from user where 1=1 
+		<!--<include refid="queryUser"></include>-->
+
+	</select>
+	<select id="getTotalUserCount" resultType="integer">
+		select count(*) from user  where 1=1
+		<include refid="queryUser"></include>
+	</select>
+	<sql id="queryUser">
+		<!-- 这里判断的时候不能加上#{}符合 -->
+		<if test="user.userName!=null and user.userName!=''">
+			and userName like '%${user.userName}%'
+		</if>
+		<if test="user.email!=null and user.email!=''">
+			and email like '%${user.email}'
+		</if>
+		<if test="user.isActive!=null and user.isActive!=''">
+			and isActive = #{user.isActive}
+		</if>
+	</sql>
+</mapper>

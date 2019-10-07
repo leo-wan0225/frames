@@ -42,15 +42,15 @@
 		<!-- 加载mybatis的全局配置文件 -->
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 		<!-- 扫描entity包 使用别名 -->
-		<property name="typeAliasesPackage" value="leo.wan.entity" />
+		<property name="typeAliasesPackage" value="leo.wan.model" />
 		<!-- 扫描sql配置文件:mapper需要的xml文件 -->
-		<property name="mapperLocations" value="classpath:leo/wan/mapper/*.xml" />
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
 	</bean>
 
 	<!-- 配置代理模式开发，以及扫描包信息 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 指定扫描的包名如果扫描多个包，每个包中间使用半角逗号分隔,默认name为类名开头小写 -->
-		<property name="basePackage" value="leo.wan.mapper" />
+		<property name="basePackage" value="leo.wan.dao" />
 		<!-- 注入sqlSessionFactory -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
@@ -80,14 +80,14 @@
 			id="loginPointcutController" />
 		<aop:pointcut expression="execution(* leo.wan.service.*.*(..))"
 			id="loginPointcutService" />
-		<aop:pointcut expression="execution(* leo.wan.mapper.*.*(..))"
+		<aop:pointcut expression="execution(* leo.wan.dao.*.*(..))"
 			id="loginPointcutDao" />
 		<!-- 配置其他切入点... -->
 		<!-- 配置事务切面信息 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 		<!-- 配置其他切面信息... -->
 		<!-- 统一日志管理切面配置，暂时对业务方法进行管理 -->
-		<aop:aspect ref="logAspect">
+		<!--<aop:aspect ref="logAspect">
 			<aop:around method="loggingAroundForController" pointcut-ref="loginPointcutController"/>
 		</aop:aspect>
 		<aop:aspect ref="logAspect">
@@ -95,7 +95,7 @@
 		</aop:aspect>
 		<aop:aspect ref="logAspect">
 			<aop:around method="loggingAroundForDao" pointcut-ref="loginPointcutDao"/>
-		</aop:aspect>
+		</aop:aspect>-->
 	</aop:config>
     <!-- 导入spring mail配置信息 -->
     <import resource="classpath:applicationContext-mail.xml"/>

@@ -6,12 +6,11 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import leo.wan.entity.PageBean;
-import leo.wan.entity.User;
+import leo.wan.model.PageBean;
+import leo.wan.model.User;
 import leo.wan.service.UserService;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 /**
