@@ -29,10 +29,10 @@
 		其中日期位置支持的特殊符号?,表示与{星期}互斥,意味着若明确指定{星期}触发，则表示{日期}无意义;
 					同时味着若明确指定{日期}触发，则表示{星期}无意义，也就是说日期和星期都指定的话，一定要有一方是？
 	 -->
-    <task:scheduled-tasks scheduler="taskScheduler">
-        <!-- 每隔1秒触发任务 -->
+   <!-- <task:scheduled-tasks scheduler="taskScheduler">
+        &lt;!&ndash; 每隔1秒触发任务 &ndash;&gt;
         <task:scheduled ref="myTask" method="task1" cron="*/10 * * * * ?"/>
-        <!-- 每小时的10分30秒触发任务 -->
+        &lt;!&ndash; 每小时的10分30秒触发任务 &ndash;&gt;
         <task:scheduled ref="myTask" method="task2" cron="*/20 * * * * ?"/>
-    </task:scheduled-tasks>
+    </task:scheduled-tasks>-->
 </beans>

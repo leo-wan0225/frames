@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 
 import leo.wan.model.PageBean;
 import leo.wan.model.User;
 import leo.wan.service.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class UserController  {
-	@Resource
+	@Autowired
 	private UserService UserService;
 	@RequestMapping("/user/toList")
 	public String toUserList(){

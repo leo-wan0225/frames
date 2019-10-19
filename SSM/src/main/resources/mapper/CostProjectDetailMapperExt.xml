@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leo.wan.dao.CostProjectDetailMapperExt">
+  <select id="getList" resultType="leo.wan.model.CostProjectDetail">
+    select level_3_name level3Name,unit,sum(supply_unit_cost) supplyUnitCost,sum(install_unit_cost) installUnitCost FROM cost_project_detail
+    <where>
+      <if test="costProjectId!=null">
+        cost_project_id =#{costProjectId}
+      </if>
+    </where>
+    GROUP BY unit
+    <if test="level3Name!=null">
+      ,${level3Name}
+    </if>
+  </select>
+
+</mapper>
