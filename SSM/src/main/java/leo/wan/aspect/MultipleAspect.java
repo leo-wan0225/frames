@@ -21,5 +21,6 @@ public class MultipleAspect {
         System.out.println("调用到了");
         System.out.println("实践出真理");
         System.out.println("测试git");
+        System.out.println("不要 stash 内容的提交");
     }
 }
