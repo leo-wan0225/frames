@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
@@ -17,6 +18,8 @@ import java.util.List;
  * 用于实现系统自动维护创建时间和修改时间
  * 如有其它需要系统维护的字段可以扩展该类
  */
+//order 的值越小，越优先执行
+@Order(1)
 @Slf4j
 @Aspect
 @Component
