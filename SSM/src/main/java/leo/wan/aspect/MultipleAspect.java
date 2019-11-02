@@ -19,5 +19,6 @@ public class MultipleAspect {
             "execution(* leo.wan.dao.QuestionItemMapperExt.getQuestionItemsByPage(..))")
     public void myBefore() {
         System.out.println("调用到了");
+        System.out.println("实践出真理");
     }
 }
