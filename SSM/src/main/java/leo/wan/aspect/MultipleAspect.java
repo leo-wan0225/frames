@@ -20,5 +20,6 @@ public class MultipleAspect {
     public void myBefore() {
         System.out.println("调用到了");
         System.out.println("实践出真理");
+        System.out.println("测试git");
     }
 }
