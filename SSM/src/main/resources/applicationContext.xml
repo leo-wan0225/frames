@@ -15,8 +15,12 @@
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-3.2.xsd">
-	<!-- 配置扫描路径，同时开启注解配置（也可以单独开启） -->
-	<context:component-scan base-package="leo.wan.service"></context:component-scan>
+	<!--开启切面注解配置，spring和springmvc是俩个上下文，所以需要配置俩次，且测试的时候加载的是spring的配置文件，所以如果不加这个配置，注解的切面就不会生效-->
+	<aop:aspectj-autoproxy/>
+	<!-- 配置扫描路径，同时开启注解配置（也可以单独开启），拍出controller以外的注解 -->
+	<context:component-scan base-package="leo.wan">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	<!-- 导入数据库连接信息配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- 配置数据库连接池，得到连接 -->
@@ -45,6 +49,25 @@
 		<property name="typeAliasesPackage" value="leo.wan.model" />
 		<!-- 扫描sql配置文件:mapper需要的xml文件 -->
 		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+
+		<property name="plugins">
+			<array>
+				<!-- 配置mybatis分页插件PageHelper -->
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<!-- 什么都不配，使用默认的配置 -->
+						<value></value>
+					</property>
+				</bean>
+				<!--配置创建和更新时间插件,注释掉，采用spring aop的方式实现-->
+				<!--<bean class="leo.wan.interceptor.CreateAndUpdateTimeInterceptor">
+					<property name="properties">
+						&lt;!&ndash; 什么都不配，使用默认的配置 &ndash;&gt;
+						<value></value>
+					</property>
+				</bean>-->
+			</array>
+		</property>
 	</bean>
 
 	<!-- 配置代理模式开发，以及扫描包信息 -->

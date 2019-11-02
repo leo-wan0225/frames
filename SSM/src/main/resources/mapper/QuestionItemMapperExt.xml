@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leo.wan.dao.QuestionItemMapperExt">
+
+    <resultMap id="QuestionItemExt" type="leo.wan.model.QuestionItemExt"
+               extends="leo.wan.dao.QuestionItemMapperExt.BaseResultMap">
+        <collection property="supplierAnswers" ofType="leo.wan.model.SupplierAnswer">
+            <id column="answerId" jdbcType="INTEGER" property="id"/>
+            <result column="supplier_answer" jdbcType="VARCHAR" property="supplierAnswer"/>
+            <result column="supplier_id" jdbcType="VARCHAR" property="supplierId"/>
+            <result column="supplier_name" jdbcType="VARCHAR" property="supplierName"/>
+            <result column="question_id" jdbcType="VARCHAR" property="questionId"/>
+        </collection>
+    </resultMap>
+
+    <select id="getQuestionItemsByPage" resultMap="QuestionItemExt">
+        select a.*,b.id answerId,b.supplier_answer,b.supplier_id,b.supplier_name,b.question_id from question_item a
+        inner join supplier_answer b on a.id = b.question_id
+        <if test="page!=null">
+            limit #{page.offset},#{page.pageSize};
+        </if>
+
+    </select>
+    <select id="getQuestionItems" resultMap="QuestionItemExt">
+        select a.*,b.id answerId,b.supplier_answer,b.supplier_id,b.supplier_name,b.question_id from question_item a
+        inner join supplier_answer b on a.id = b.question_id
+
+    </select>
+    <resultMap id="QuestionItemExt2" type="leo.wan.model.QuestionItemExt" extends="BaseResultMap">
+        <collection property="supplierAnswers"  select="selectByQuestionId" column="{quesionId=id}">
+        </collection>
+    </resultMap>
+    <!--xml方法可以多，但是mapper接口里的方法不能多-->
+    <select id="selectByQuestionId" resultType="leo.wan.model.SupplierAnswer">
+      select * from  supplier_answer where question_id = #{quesionId};
+    </select>
+
+    <select id="getQuestionItemsWithSelect"  resultMap="QuestionItemExt2">
+      select * from question_item
+    </select>
+
+    <insert id="insertBatch">
+        insert into question_item (`attribute`,`sub_arrtibute`,`update_time`,`create_time`)
+        values
+        <foreach collection="questionItems" item="questionItem"  separator=",">
+            (#{questionItem.attribute},#{questionItem.subArrtibute},#{questionItem.updateTime},#{questionItem.createTime})
+        </foreach>
+    </insert>
+</mapper>

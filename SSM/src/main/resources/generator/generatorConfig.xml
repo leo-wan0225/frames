@@ -71,8 +71,11 @@
         <!--<table tableName="role" domainObjectName="Role">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>-->
-        <table tableName="cost_project_detail" domainObjectName="CostProjectDetail">
+        <table tableName="question_item" domainObjectName="QuestionItem">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
+       <!-- <table tableName="supplier_answer" domainObjectName="SupplierAnswer">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>-->
     </context>
 </generatorConfiguration>

@@ -1,0 +1,52 @@
+CREATE TABLE `cost_project_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `level_1_name` varchar(255) NOT NULL,
+  `level_2_name` varchar(255) NOT NULL,
+  `level_3_name` varchar(255) NOT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `supply_unit_cost` decimal(10,0) DEFAULT NULL,
+  `install_unit_cost` decimal(10,0) DEFAULT NULL,
+  `cost_project_id` int(11) DEFAULT NULL,
+  `level_4_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `question_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attribute` varchar(120) DEFAULT NULL,
+  `sub_arrtibute` varchar(120) DEFAULT NULL,
+  `question_type` varchar(120) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(100) DEFAULT NULL,
+  `roleLevel` varchar(80) DEFAULT NULL,
+  `isUsed` tinyint(4) DEFAULT '1',
+  `amount` double DEFAULT NULL,
+  `int_Total` int(11) DEFAULT NULL,
+  `decemil_Toal` decimal(10,1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `supplier_answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_answer` varchar(45) DEFAULT NULL,
+  `supplier_id` varchar(45) DEFAULT NULL,
+  `supplier_name` varchar(45) DEFAULT NULL,
+  `question_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userName` varchar(200) DEFAULT NULL,
+  `pwd` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `tel` varchar(100) DEFAULT '1',
+  `isActive` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
