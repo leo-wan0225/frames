@@ -99,12 +99,12 @@
 		<!-- 配置事务切入点，对service层进行拦截 -->
 		<aop:pointcut expression="execution(* leo.wan.service.*.*(..))"
 			id="txPointcut" />
-		<aop:pointcut expression="execution(* leo.wan.controller.*.*(..))"
+		<!--<aop:pointcut expression="execution(* leo.wan.controller.*.*(..))"
 			id="loginPointcutController" />
 		<aop:pointcut expression="execution(* leo.wan.service.*.*(..))"
 			id="loginPointcutService" />
 		<aop:pointcut expression="execution(* leo.wan.dao.*.*(..))"
-			id="loginPointcutDao" />
+			id="loginPointcutDao" />-->
 		<!-- 配置其他切入点... -->
 		<!-- 配置事务切面信息 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
