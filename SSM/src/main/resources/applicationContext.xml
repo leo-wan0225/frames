@@ -96,8 +96,8 @@
 	<!-- AOP配置 -->
 	<bean id="logAspect" class="leo.wan.aspect.LogAspect"></bean>
 	<aop:config>
-		<!-- 配置事务切入点 -->
-		<aop:pointcut expression="execution(* leo.wan.*.*.*(..))"
+		<!-- 配置事务切入点，对service层进行拦截 -->
+		<aop:pointcut expression="execution(* leo.wan.service.*.*(..))"
 			id="txPointcut" />
 		<aop:pointcut expression="execution(* leo.wan.controller.*.*(..))"
 			id="loginPointcutController" />
