@@ -19,7 +19,7 @@ import java.util.List;
  * 如有其它需要系统维护的字段可以扩展该类
  */
 //order 的值越小，越优先执行
-@Order(1)
+
 @Slf4j
 @Aspect
 @Component

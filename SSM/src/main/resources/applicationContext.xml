@@ -107,7 +107,7 @@
 			id="loginPointcutDao" />-->
 		<!-- 配置其他切入点... -->
 		<!-- 配置事务切面信息 -->
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 		<!-- 配置其他切面信息... -->
 		<!-- 统一日志管理切面配置，暂时对业务方法进行管理 -->
 		<!--<aop:aspect ref="logAspect">

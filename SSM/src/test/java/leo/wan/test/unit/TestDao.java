@@ -8,11 +8,13 @@ import leo.wan.dao.CostProjectDetailMapperExt;
 import leo.wan.dao.QuestionItemMapperExt;
 import leo.wan.dao.RoleMapper;
 import leo.wan.model.*;
+import leo.wan.service.QuestionItemService;
 import leo.wan.service.UserService;
 import leo.wan.test.base.BaseJunit4Test;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.sound.midi.Soundbank;
 import java.util.*;
 
 public class TestDao extends BaseJunit4Test {
@@ -65,6 +67,9 @@ public class TestDao extends BaseJunit4Test {
     /**
      * 测试链表分页查询。单边主表分页是否存在问题：筛选条件在主表上？筛选条件在副表上？采用子查询是否可以解决这个问题？用pageHelp的插件是否能够解决这个问题？
      */
+    /**
+     * 测试切面也用了这个方法
+     */
     @Test
     public void testJoinPage() {
         //不使用分页插件出现的情况
@@ -82,6 +87,16 @@ public class TestDao extends BaseJunit4Test {
         List<QuestionItemExt> questionItemExts3 = questionItemMapperExt.getQuestionItemsWithSelect();
         long count2 = page2.getTotal();
         //以上正确的子查询思路和自己实现先对主表进行分页在连接副表查询的思路是一致的
+    }
+    @Autowired
+    private QuestionItemService questionItemService;
+    @Test
+    public void  testTransaction(){
+        questionItemService.getQuestionItemsByPage();
+    }
+    @Test
+    public void  temp(){
+        System.out.println(Integer.MAX_VALUE-2);
     }
 
     /**
