@@ -63,19 +63,18 @@
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-         <!--<table tableName="role" domainObjectName="Role"
-                enableCountByExample="false" enableUpdateByExample="false"
-                enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false">
-         </table>-->
-        <!--<table tableName="role" domainObjectName="Role">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>-->
-        <table tableName="question_item" domainObjectName="QuestionItem">
-            <generatedKey column="id" sqlStatement="MySql"/>
+        <table tableName="role" domainObjectName="Role">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-       <!-- <table tableName="supplier_answer" domainObjectName="SupplierAnswer">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>-->
+        <table tableName="question_item" domainObjectName="QuestionItem">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="supplier_answer" domainObjectName="SupplierAnswer">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <!--这里一定要加上identity="true",不然获取自增主键的sql有问题。mysql执行select 主键时不能为before的，要为after，oracle才是before-->
+        <table tableName="cost_project_detail" domainObjectName="CostProjectDetail">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
