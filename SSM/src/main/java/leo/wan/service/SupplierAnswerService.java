@@ -15,5 +15,10 @@ public class SupplierAnswerService {
         supplierAnswer.setSupplierAnswer("1");
         supplierAnswer.setSupplierName("ces");
         supplierAnswerMapper.insert(supplierAnswer);
+        SupplierAnswer supplierAnswer2 = new SupplierAnswer();
+        supplierAnswer2.setQuestionId("1");
+        supplierAnswer2.setSupplierAnswer("1");
+        supplierAnswer2.setSupplierName("ces");
+        supplierAnswerMapper.insert(supplierAnswer);
     }
 }

@@ -180,7 +180,7 @@ public class QuestionItem {
      *
      * @mbggenerated
      */
-   public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

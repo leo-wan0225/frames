@@ -32,4 +32,5 @@ public class QuestionItemService {
         questionItemMapperExt.insert(questionItem);
         throw  new  RuntimeException("ces");
     }
+
 }

@@ -9,6 +9,7 @@ import leo.wan.dao.QuestionItemMapperExt;
 import leo.wan.dao.RoleMapper;
 import leo.wan.model.*;
 import leo.wan.service.QuestionItemService;
+import leo.wan.service.SupplierAnswerService;
 import leo.wan.service.UserService;
 import leo.wan.test.base.BaseJunit4Test;
 import org.junit.Test;
@@ -26,7 +27,8 @@ public class TestDao extends BaseJunit4Test {
     CostProjectDetailMapperExt costProjectDetailMapperExt;
     @Autowired
     QuestionItemMapperExt questionItemMapperExt;
-
+    @Autowired
+    private SupplierAnswerService supplierAnswerService;
     @Autowired
     private QuestionItemService questionItemService;
 
@@ -97,6 +99,12 @@ public class TestDao extends BaseJunit4Test {
     public void testTransaction() {
 
         questionItemService.getQuestionItemsByPage();
+    }
+
+    @Test
+    public void testTransaction2() {
+        supplierAnswerService.add();
+        //questionItemService.getQuestionItemsByPage();
     }
 
     @Test

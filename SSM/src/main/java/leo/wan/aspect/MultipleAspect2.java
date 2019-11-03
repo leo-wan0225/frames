@@ -1,22 +1,15 @@
 package leo.wan.aspect;
 
 import leo.wan.common.SupplierAnswerService2;
+import leo.wan.common.SupplierAnswerService3;
 import leo.wan.dao.SupplierAnswerMapper;
-import leo.wan.model.SupplierAnswer;
-import leo.wan.model.SupplierAnswerExample;
 import leo.wan.service.SupplierAnswerService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.sound.midi.Soundbank;
-import java.lang.annotation.Annotation;
 
 /**
  * 拦截多个方法。||和or都可以。&&和and不起作用
@@ -25,7 +18,7 @@ import java.lang.annotation.Annotation;
 @Slf4j
 @Aspect
 @Component
-public class MultipleAspect {
+public class MultipleAspect2 {
     @Pointcut("execution(* leo.wan.dao.QuestionItemMapperExt.updateByPrimaryKeySelective(..)) || " +
             "execution(* leo.wan.dao.QuestionItemMapperExt.getQuestionItems(..)) || " +
             "execution(* leo.wan.dao.QuestionItemMapperExt.getQuestionItemsByPage(..))")
@@ -40,7 +33,7 @@ public class MultipleAspect {
     @Autowired
     private SupplierAnswerService supplierAnswerService;
     @Autowired
-    private SupplierAnswerService2 supplierAnswerService2;
+    private SupplierAnswerService3 supplierAnswerService3;
     /*@Transactional(rollbackFor = Exception.class)*/
 
     @Before("pointcut2()")
@@ -54,7 +47,7 @@ public class MultipleAspect {
         System.out.println("开始执行");
         supplierAnswerService.add();
         System.out.println("这个地方事务应该已经提交了啊");
-        supplierAnswerService2.add();
+        supplierAnswerService3.add();
         System.out.println("调用到了");
         System.out.println("实践出真理");
         System.out.println("测试git");
