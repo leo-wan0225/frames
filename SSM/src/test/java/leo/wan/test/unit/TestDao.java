@@ -27,6 +27,9 @@ public class TestDao extends BaseJunit4Test {
     @Autowired
     QuestionItemMapperExt questionItemMapperExt;
 
+    @Autowired
+    private QuestionItemService questionItemService;
+
     @Test
     public void testUserDao() {
         Map map = new HashMap(16);
@@ -77,40 +80,42 @@ public class TestDao extends BaseJunit4Test {
         leo.wan.common.Page page = new leo.wan.common.Page(1, 3);
         params.put("page", page);
         List<QuestionItemExt> questionItemExts = questionItemMapperExt.getQuestionItemsByPage(params);
-        Page page1 = PageHelper.startPage(1,3);
+        Page page1 = PageHelper.startPage(1, 3);
         List<QuestionItemExt> questionItemExts2 = questionItemMapperExt.getQuestionItems();
         long count = page1.getTotal();
         //由以上代码可以知道，mybatis的分页插件确实不支持多表连接的分页操作。且以上的分页也是有问题的（由于分页参数查出来的结果多方会少数据）。需要对主表进行分页，然后在连接副表。
         //以下是正确的分页方式
         //分页插件加子查询的方式，分页插件分页的是主表
-        Page page2 = PageHelper.startPage(1,3);
+        Page page2 = PageHelper.startPage(1, 3);
         List<QuestionItemExt> questionItemExts3 = questionItemMapperExt.getQuestionItemsWithSelect();
         long count2 = page2.getTotal();
         //以上正确的子查询思路和自己实现先对主表进行分页在连接副表查询的思路是一致的
     }
-    @Autowired
-    private QuestionItemService questionItemService;
+
+
     @Test
-    public void  testTransaction(){
+    public void testTransaction() {
+
         questionItemService.getQuestionItemsByPage();
     }
+
     @Test
-    public void  temp(){
-        System.out.println(Integer.MAX_VALUE-2);
+    public void temp() {
+        System.out.println(Integer.MAX_VALUE - 2);
     }
 
     /**
      * 测试自动维护创建事件和修改时间的功能
      */
     @Test
-    public  void testTwoTime(){
+    public void testTwoTime() {
         QuestionItem questionItem = new QuestionItem();
         questionItem.setId(16);
         //questionItem.setAttribute("newset11");
         questionItem.setSubArrtibute("subattr1212");
         //questionItem.setQuestionType("1");
         questionItemMapperExt.updateByPrimaryKeySelective(questionItem);
-      //  questionItemMapperExt.insert(questionItem);
+        //  questionItemMapperExt.insert(questionItem);
        /* QuestionItem questionItem1 = new QuestionItem();
         questionItem1.setAttribute("wanjing");
         QuestionItemExample example = new QuestionItemExample();
@@ -119,8 +124,9 @@ public class TestDao extends BaseJunit4Test {
       //  questionItemMapperExt.updateByExampleSelective(questionItem1,example);
         questionItemMapperExt.insertSelective(questionItem1);*/
     }
+
     @Test
-    public  void  testAutoSetTimeAspect(){
+    public void testAutoSetTimeAspect() {
         QuestionItem questionItem = new QuestionItem();
         questionItem.setAttribute("testAutoAAAAect11111");
         questionItem.setSubArrtibute("testAutBBBpect11111");

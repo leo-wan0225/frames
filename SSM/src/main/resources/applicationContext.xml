@@ -86,11 +86,11 @@
 	</bean>
 	<!-- 配置注解方式配置事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
-	<!-- 配置事务属性 -->
+	<!-- 配置事务属性,默认的传播机制为 REQUIRED，默认的隔离级别为 DEFAULT 和数据库的一致-->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" />
+			<!--<tx:method name="get*" read-only="true" />-->
+			<tx:method name="*" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	<!-- AOP配置 -->

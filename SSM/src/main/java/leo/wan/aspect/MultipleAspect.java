@@ -1,11 +1,18 @@
 package leo.wan.aspect;
 
+import leo.wan.common.SupplierAnswerService2;
+import leo.wan.dao.SupplierAnswerMapper;
+import leo.wan.model.SupplierAnswer;
+import leo.wan.model.SupplierAnswerExample;
+import leo.wan.service.SupplierAnswerService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sound.midi.Soundbank;
 import java.lang.annotation.Annotation;
@@ -13,7 +20,7 @@ import java.lang.annotation.Annotation;
 /**
  * 拦截多个方法。||和or都可以。&&和and不起作用
  */
-@Order(Integer.MAX_VALUE-1)//默认为Integer.MAX_VALUE,事务aop也是
+@Order(Integer.MAX_VALUE)//默认为Integer.MAX_VALUE,事务aop也是
 @Slf4j
 @Aspect
 @Component
@@ -27,12 +34,26 @@ public class MultipleAspect {
     @Pointcut("execution(* leo.wan.service.QuestionItemService.* (..))")
     public void pointcut2() {
     }
-
-    /* @Before(value = "execution(* leo.wan.dao.QuestionItemMapperExt.updateByPrimaryKeySelective(..)) || "+
-             "execution(* leo.wan.dao.QuestionItemMapperExt.getQuestionItems(..)) || " +
-             "execution(* leo.wan.dao.QuestionItemMapperExt.getQuestionItemsByPage(..))")*/
+    @Autowired
+    private SupplierAnswerMapper supplierAnswerMapper;
+    @Autowired
+    private SupplierAnswerService supplierAnswerService;
+    @Autowired
+    private SupplierAnswerService2 supplierAnswerService2;
+    /*@Transactional(rollbackFor = Exception.class)*/
+    //这个地方不加事务处理，但是在事务aop之后执行的话确实也会和目标方法在同一个事务里面
     @Before("pointcut2()")
     public void myBefore() {
+        //这里用没有被事务管理的方法操作数据库,且在事务aop的前面执行，看是否是在一个事务里面
+       /* SupplierAnswer supplierAnswer = new SupplierAnswer();
+        supplierAnswer.setQuestionId("1");
+        supplierAnswer.setSupplierAnswer("1");
+        supplierAnswer.setSupplierName("ces");
+        supplierAnswerMapper.insert(supplierAnswer);*/
+        System.out.println("开始执行");
+        supplierAnswerService.add();
+        System.out.println("这个地方事务应该已经提交了啊");
+        supplierAnswerService2.add();
         System.out.println("调用到了");
         System.out.println("实践出真理");
         System.out.println("测试git");
