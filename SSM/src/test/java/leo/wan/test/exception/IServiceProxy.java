@@ -24,9 +24,19 @@ public class IServiceProxy implements InvocationHandler {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            Throwable throwable = getReall(e);
+            System.out.println(throwable.getClass().getSimpleName());
+            System.out.println(throwable.getMessage());
            throw e.getCause();
         }
         return result;
+    }
+    private Throwable getReall(Throwable throwable){
+        if (throwable.getCause()==null){
+            return  throwable;
+        }else {
+            return  getReall(throwable.getCause());
+        }
     }
 
     public static void main(String[] args) {
