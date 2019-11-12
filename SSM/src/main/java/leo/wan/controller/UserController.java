@@ -19,23 +19,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
+@RequestMapping("/user/")
 public class UserController  {
 	@Autowired
 	private UserService UserService;
-	@RequestMapping("/user/toList")
+	@RequestMapping("toList")
 	public String toUserList(){
 		System.out.println("success");
 		System.out.println("这个插件太棒了");
 		return "admin/userList";
 	}
-	@RequestMapping("/user/list")
+	@RequestMapping("list")
 	@ResponseBody
 	public  Map<String,Object> list(PageBean pageBean,User user){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pageSize", pageBean.getPageSize());
 		map.put("pageStar", pageBean.getStart());
-		String iString = null;
-		iString.endsWith("e");
+		/*String iString = null;
+		iString.endsWith("e");*/
 		map.put("user", user);
 		List<User> users = UserService.findUserByPage(map);
 		System.out.println(users);

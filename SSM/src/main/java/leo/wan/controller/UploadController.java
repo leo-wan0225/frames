@@ -20,12 +20,13 @@ import org.springframework.web.multipart.MultipartFile;
  *
  */
 @Controller
+@RequestMapping("/upload/")
 public class UploadController {
-	@RequestMapping("/upload/toupload")
+	@RequestMapping("toupload")
 	public String toUpload(){
 		return "demo/upload";
 	}
-	@RequestMapping("/upload/upload1")
+	@RequestMapping("upload1")
 	public String upload1(MultipartFile uploadFile1,HttpSession session) throws IllegalStateException, IOException{
 		System.out.println(uploadFile1.getOriginalFilename());
 		String fileNameString = uploadFile1.getOriginalFilename();
