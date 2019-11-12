@@ -282,8 +282,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <target>8</target>
-                    <source>8</source>
+                    <target>7</target>
+                    <source>7</source>
                     <!-- 指明编译源代码时使用的字符编码，maven编译的时候默认使用的GBK编码，  通过encoding属性设置字符编码， 告诉maven这个项目使用UTF-8来编译 -->
                     <encoding>utf8</encoding>
                 </configuration>
@@ -321,6 +321,17 @@
                         <version>0.0.1-SNAPSHOT</version>
                     </dependency>-->
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!--<url>http://localhost:8080/data</url>-->
+                    <!--<server>tomcat7-local</server>-->
+                    <!--项目名称根路径-->
+                    <path>/SSM</path>
+                </configuration>
             </plugin>
         </plugins>
     </build>

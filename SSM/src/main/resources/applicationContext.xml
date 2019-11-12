@@ -123,5 +123,5 @@
     <!-- 导入spring mail配置信息 -->
     <import resource="classpath:applicationContext-mail.xml"/>
     <!-- 导入定时任务的配置信息 -->
-    <import resource="classpath:applicationContext-task.xml"/>
+    <!--<import resource="classpath:applicationContext-task.xml"/>-->
 </beans>

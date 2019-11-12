@@ -25,6 +25,7 @@ public class UserController  {
 	@RequestMapping("/user/toList")
 	public String toUserList(){
 		System.out.println("success");
+		System.out.println("这个插件太棒了");
 		return "admin/userList";
 	}
 	@RequestMapping("/user/list")
