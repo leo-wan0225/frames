@@ -33,6 +33,7 @@ public class UploadController {
 		String path = session.getServletContext().getRealPath("/WEB-INF/uploadFiles");
 		File file = new File(path,fileNameString);
 		uploadFile1.transferTo(file);
+		//ces idea git
 		return "";
 	}
 	@RequestMapping("/upload/download")
