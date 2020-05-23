@@ -1,32 +1,28 @@
 package leo.wan.common;
 
 public class Page {
-    //每页显示的数量
-    private int pageSize;
+    //每页允许的数量，分页的前提下默认单元显示20条
+    private int limit=20;
     //偏移量，下标
     private int offset;
     //当前页码
     private int pageNo;
 
     public Page(int pageNo, int pageSize) {
-        this.pageSize = pageSize;
-        this.offset = pageNo > 0 ? (pageNo - 1) * this.pageSize : 0;
+        this.limit = pageSize;
+        this.pageNo=pageNo;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public int getLimit() {
+        return limit;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
     public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = offset;
+        return  pageNo > 0 ? (pageNo - 1) * this.limit : 0;
     }
 
     public int getPageNo() {
