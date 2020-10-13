@@ -139,7 +139,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <!-- test和provide范围的jar包不能传递，所以test和provide会分布在各个模块下。解决的办法是在父工程指定版本号，子工程引用父工程；引入父工程后，安装的时候需要先安装父工程。多模块的工程一个一个安装太麻烦，可以使用在聚合工程中使用聚合：继承和聚合的使用 -->
             <scope>test</scope>
         </dependency>
